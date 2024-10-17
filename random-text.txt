@@ -1,0 +1,208 @@
+<form onSubmit={handleSignUp}>
+          <Input
+						icon={Mail}
+						type='email'
+						placeholder='Email Address'
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
+					/>
+        </form>
+
+
+
+		//<PasswordStrengthMeter password = {password} />
+
+CAROUSEL CODE
+import React, { useEffect, useState } from "react";
+
+const testimonials = [
+  {
+    id: 1,
+    photo: "/path/to/photo1.jpg", // Replace with actual photo path
+    name: "John Doe",
+    title: "CEO of Company A",
+    testimonial:
+      "AQRisk has transformed our business strategy and helped us minimize risks effectively. Their expertise and dedicated support have made a significant impact on our operations, allowing us to focus on growth while they handle the complexities of risk management.",
+  },
+  {
+    id: 2,
+    photo: "/path/to/photo2.jpg", // Replace with actual photo path
+    name: "Jane Smith",
+    title: "Managing Director of Company B",
+    testimonial:
+      "The insights we gained from AQRisk have been invaluable in our decision-making process. Their tailored solutions and attention to detail have provided us with a competitive edge, enabling us to navigate challenges with confidence.",
+  },
+  {
+    id: 3,
+    photo: "/path/to/photo3.jpg", // Replace with actual photo path
+    name: "Mike Johnson",
+    title: "CTO of Company C",
+    testimonial:
+      "Their innovative solutions have given us a competitive edge in the market. The team at AQRisk understands our unique needs and has delivered exceptional results, ensuring we stay ahead in this rapidly evolving industry.",
+  },
+  {
+    id: 4,
+    photo: "/path/to/photo4.jpg", // Replace with actual photo path
+    name: "Emily Davis",
+    title: "COO of Company D",
+    testimonial:
+      "The support from AQRisk is top-notch. They are always there when we need them. Their commitment to excellence and proactive approach to risk management have been game-changers for our business.",
+  },
+];
+
+const ClientTestimonialsCarousel = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(nextTestimonial, 5000); // Change testimonials every 5 seconds
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="relative bg-yellow-200 py-16">
+      <div className="h-80 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        <h2 className="text-3xl font-bold text-center">What Our Clients Say</h2>
+        <div className="flex justify-between items-center">
+          <div className="relative w-full overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            >
+              {testimonials.map((client) => (
+                <div key={client.id} className="flex-none w-full p-10 text-left">
+                  <p className="text-black mb-6 p-4 text-lg">
+                    “{client.testimonial}”
+                  </p>
+                  <div className="flex items-center">
+                    <img
+                      src={client.photo}
+                      alt={client.name}
+                      className="w-14 h-14 rounded-full mr-4"
+                    />
+                    <div className="text-left">
+                      <h3 className="text-lg font-semibold text-gray-800">{client.name}</h3>
+                      <h4 className="text-sm text-gray-600">{client.title}</h4>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* Placeholder for visuals on the right side */}
+          <div className="hidden lg:block w-1/2 h-full bg-opacity-30 bg-gradient-to-l from-white to-yellow-200">
+            <img src={"../public/icons8-facebook.svg"} alt="Visual" className="w-full h-full object-cover"/>
+          </div>
+        </div>
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent to-yellow-200 pointer-events-none" />
+    </div>
+  );
+};
+
+export default ClientTestimonialsCarousel;
+
+
+NAVBARRR CODEEEEE
+
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // For managing dropdown
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  return (
+    <nav className="bg-logo-orange border-logo-orange sticky top-0 z-50">
+      <div className="max-w-screen-xl flex items-center justify-between mx-auto p-4">
+        <div className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Link to="/">
+            <img src={"../public/white_favicon.svg"} className="h-8" alt="BrightPath Logo" />
+          </Link>
+          <Link to="/home" className="text-2xl font-semibold whitespace-nowrap text-white">BrightPath</Link>
+        </div>
+
+        {/* Mobile Menu Toggle Button */}
+        <button
+          onClick={toggleMenu}
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:text-logo-brown focus:outline-none"
+          aria-controls="navbar-dropdown"
+          aria-expanded={isOpen}
+        >
+          <span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
+          {isOpen ? (
+            // Close icon (X)
+            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            // Open icon (Hamburger)
+            <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 14">
+              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+            </svg>
+          )}
+        </button>
+
+        {/* Mobile Menu */}
+        <div className={`flex-col items-center md:flex md:flex-row md:space-x-8 ${isOpen ? 'flex' : 'hidden'} md:block`}>
+          <ul className={`flex flex-col md:flex-row md:space-x-8 ${isOpen ? 'space-y-2 md:space-y-0' : ''}`}>
+            <li>
+              <Link to="/" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">Home</Link>
+            </li>
+            <li>
+              <Link to="/about_us" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">About Us</Link>
+            </li>
+            <li className="relative group">
+              <button onClick={toggleDropdown} className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0" id="dropdownToggle">
+                Products & Services &#8595;
+              </button>
+              <ul className={`absolute left-0 bg-logo-orange bg-opacity-90 rounded shadow-lg w-full max-w-xs ${isDropdownOpen ? 'block' : 'hidden'} z-50`}>
+                <li><Link to="/account_management" className="block px-4 py-2 text-white hover:bg-logo-orange">Account Management</Link></li>
+                <li><Link to="/loan_services" className="block px-4 py-2 text-white hover:bg-logo-orange">Loan Services</Link></li>
+                <li><Link to="/credit_cards" className="block px-4 py-2 text-white hover:bg-logo-orange">Credit Cards</Link></li>
+                <li><Link to="/investment_solutions" className="block px-4 py-2 text-white hover:bg-logo-orange">Investment Solutions</Link></li>
+                <li><Link to="/savings_account" className="block px-4 py-2 text-white hover:bg-logo-orange">Savings Account</Link></li>
+                <li><Link to="/mobile_banking" className="block px-4 py-2 text-white hover:bg-logo-orange">Mobile Banking</Link></li>
+              </ul>
+            </li>
+            <li>
+              <Link to="/help" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">Help</Link>
+            </li>
+            <li>
+              <Link to="./branch-locator" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">Branch/ATM Locator</Link>
+            </li>
+            <li>
+              <Link to="/insights" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">Insights</Link>
+            </li>
+            <li>
+              <Link to="/investor_relations" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">Investor Relations</Link>
+            </li>
+            <li>
+              <Link to="/contact_us" className="mx-2 block py-2 px-3 text-white rounded hover:bg-logo-brown md:hover:bg-transparent md:border-0 md:hover:text-logo-brown md:p-0">Contact Us</Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
+
+
+
+      <div className="footer_image" onClick={handleLogOut}>
+        <img src="icons/logout.svg" fill alt="jsm" />
+      </div>
+    </footer>

@@ -1,0 +1,44 @@
+{
+  "name": "auth-main-tutorial",
+  "version": "1.0.0",
+  "main": "backend/index.js",
+  "scripts": {
+    "dev": "nodemon backend/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@chakra-ui/react": "^2.10.3",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@sentry/react": "^8.34.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "framer-motion": "^11.11.9",
+    "iconoir-react": "^7.9.0",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.447.0",
+    "mailtrap": "^3.4.0",
+    "mongodb": "^6.9.0",
+    "mongoose": "^8.7.0",
+    "plaid": "^29.0.0",
+    "react-hot-toast": "^2.4.1",
+    "react-plaid-link": "^3.6.0",
+    "react-router-dom": "^6.26.2",
+    "zustand": "^5.0.0-rc.2"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "autoprefixer": "^10.4.20",
+    "nodemon": "^3.1.7",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
+  }
+}
